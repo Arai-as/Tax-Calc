@@ -23,7 +23,7 @@ $('.btn').on('click',function(){
     });
     minasBorder=TaxBorder-sum;
     moneySpace=minasBorder/count;
-    timeH=moneySpace/wage;
+    timeH=Math.floor(moneySpace/wage);
     $('.result-sum').text(sum);
     $('.Bminas').text(minasBorder);
     $('.time-m').text(timeH);
