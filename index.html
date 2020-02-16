@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>アルバイト税金控除チェッカー</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="tax-func.js"></script>
+  <link rel="stylesheet" type="text/css" href="tax.css">
+</head>
+<body>
+  <h1>アルバイト税金控除チェッカー</h1>
+<div class="main-wrapper">
+  <div class="main-container">
+    <form>
+    <fieldset class="main-field">
+      <legend>時給はいくらですか？</legend>
+      <div class="main-form">
+      <input type="text" id="wage"> 円
+    </div>
+    </fieldset>
+    <fieldset class="main-field">
+      <legend>交通費が支給されている場合、交通費は時給に加算されていますか？</legend>
+      <div class="main-form">
+      <p class="ex-b">例:基本時給が1000円で交通費分を加算して時給1200円になっている場合→はい</p>
+      <p class="ex-b">例:基本時給が1000円で200円交通費として受け取っている場合→いいえ</p>
+      <label><input type="radio" name="kotsuhi-or" value="はい">はい</label>
+      <label><input type="radio" name="kotsuhi-or" value="いいえ">いいえ</label>
+    </div>
+    </fieldset>
+    <fieldset class="main-field">
+      <legend>各月の給与合計はいくらですか？</legend>
+      <div class="main-form">
+        <p class="ex-b">現在までの各月の給与合計を入力してください。</p>
+        <p class="ex-b">給与が無かった月は0を入力してください。</p>
+        <p class="ex-b">まだ分かっていない月(来月以降)は空白で計算してください。</p>
+      <p>1月 <input type="text" class="base-money"> 円</p>
+      <p>2月 <input type="text" class="base-money"> 円</p>
+      <p>3月 <input type="text" class="base-money"> 円</p>
+      <p>4月 <input type="text" class="base-money"> 円</p>
+      <p>5月 <input type="text" class="base-money"> 円</p>
+      <p>6月 <input type="text" class="base-money"> 円</p>
+      <p>7月 <input type="text" class="base-money"> 円</p>
+      <p>8月 <input type="text" class="base-money"> 円</p>
+      <p>9月 <input type="text" class="base-money"> 円</p>
+      <p>10月<input type="text" class="base-money"> 円</p>
+      <p>11月<input type="text" class="base-money"> 円</p>
+      <p>12月<input type="text" class="base-money"> 円</p>
+    </div>
+    </fieldset>
+        <fieldset class="main-field">
+      <legend>計算結果</legend>
+      <div class="main-form">
+      <p>現在までの給与合計</p>
+      <p><span class="result-sum"></span> 円</p>
+      <p>税金控除枠103万円との差額</p>
+      <p><span class="Bminas"></span> 円</p>
+      <p>税金控除枠内で働ける残り労働時間(一か月あたり)</p>
+      <p><span class="time-m"></span> 時間</p>
+    </div>
+    </fieldset>
+  </form>
+  </div>
+  <button class="btn">計算</button>
+</div>
+</body>
+</html>
