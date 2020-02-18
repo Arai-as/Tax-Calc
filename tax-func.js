@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+//計算ボタンが押された時の処理
 $('.btn').on('click',function(){
     var sum=0;
     var salaly;
@@ -27,5 +27,19 @@ $('.btn').on('click',function(){
     $('.result-sum').text(sum);
     $('.Bminas').text(minasBorder);
     $('.time-m').text(timeH);
+});
+//勤労学生かそうでないかの結果フォーム切り替え
+$('.borderN').show();
+$('.borderK').hide();
+$("input[name='kinrou-or']").on('change',function(){
+    var val=$(this).val();
+    if(val=="はい"){
+        $('.borderN').hide();
+        $('.borderK').show();
+    }
+    else if(val=="いいえ"){
+        $('.borderN').show();
+        $('.borderK').hide();
+    }
 });
 });
