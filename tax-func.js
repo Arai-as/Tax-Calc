@@ -1,32 +1,45 @@
 $(document).ready(function(){
-//計算ボタンが押された時の処理
-$('.btn').on('click',function(){
-    var sum=0;
-    var salaly;
-    var TaxBorder=1030000;
-    var minasBorder;
+//各月の給料を合計する関数
+function sumSalaly(x){
     var count=0;
-    var wage=parseInt($('#wage').val());
-    var moneySpace;
-    var timeH;
-    if(!wage){
-        alert("時給を入力してください");
-        exit;
-    }
+    var sum=0;
     $('.base-money').each(function(){
-        salaly=$(this).val();
+        var salaly=0;
+        salaly=parseInt($(this).val());
         if(!salaly){
             salaly=0;
             count=count+1;
         }
-        sum=sum+parseInt(salaly);
+        sum=sum+salaly;
     });
-    minasBorder=TaxBorder-sum;
-    moneySpace=minasBorder/count;
-    timeH=Math.floor(moneySpace/wage);
-    $('.result-sum').text(sum);
-    $('.Bminas').text(minasBorder);
-    $('.time-m').text(timeH);
+    if(x==0){
+        return(sum);
+    }
+    else if(x==1){
+        return(count);
+    }
+}
+//扶養枠の限界と現在までの給与合計との差を計算する関数
+function taxBorder(){
+    var max=1030000;
+    var sum=sumSalaly(0);
+    return(max-sum);
+}
+//残りの扶養枠で何時間働けるかの計算をする関数
+function MaxWork(){
+    var $wage=parseInt($('#wage').val());
+    if(!wage){
+        wage=0;
+    }
+    var count=sumSalaly(1);
+    var money=taxBorder();
+    return(Math.floor(money/count/$wage));
+}
+//計算ボタンが押された時の処理
+$('.btn').on('click',function(){
+    $('.result-sum').text(sumSalaly(0));
+    $('.Bminas').text(taxBorder());
+    $('.time-m').text(MaxWork());
 });
 //勤労学生かそうでないかの結果フォーム切り替え
 $('.borderN').show();
