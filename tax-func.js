@@ -19,9 +19,15 @@ function sumSalaly(x){
         return(count);
     }
 }
-//扶養枠の限界と現在までの給与合計との差を計算する関数
+//扶養枠の限界と現在までの給与合計との差を計算する関数(勤労学生ではない場合)
 function taxBorder(){
     var max=1030000;
+    var sum=sumSalaly(0);
+    return(max-sum);
+}
+//扶養枠の限界と現在までの給与合計との差を計算する関数(勤労学生の場合)
+function taxBorder_s(){
+    var max=1300000;
     var sum=sumSalaly(0);
     return(max-sum);
 }
@@ -37,8 +43,14 @@ function MaxWork(){
 }
 //計算ボタンが押された時の処理
 $('.btn').on('click',function(){
+    var val=$("input[name='kinrou-or']").val();
+    if(val=='はい'){
+        $('.Bminas').text(taxBorder_s());
+    }
+    else if(val=='いいえ'){
+        $('.Bminas').text(taxBorder());
+    }
     $('.result-sum').text(sumSalaly(0));
-    $('.Bminas').text(taxBorder());
     $('.time-m').text(MaxWork());
 });
 //勤労学生かそうでないかの結果フォーム切り替え
